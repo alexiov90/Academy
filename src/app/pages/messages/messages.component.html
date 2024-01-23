@@ -42,4 +42,3 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 <mat-paginator #paginator pageSize="{{pageSize}}" pageIndex="{{page - 1}}" (page)="getUsers($event)" length="{{total}}"></mat-paginator>
-

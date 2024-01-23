@@ -10,6 +10,7 @@ import { MessageService } from '../../services/message.service';
 })
 export class CreateMessageDialogComponent implements OnInit{
   message: Message;
+  maxDate: Date | undefined;
 
   constructor(
     private readonly ref: MatDialogRef<CreateMessageDialogComponent>,
@@ -20,6 +21,10 @@ export class CreateMessageDialogComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    const currentYear = new Date().getFullYear();
+    const currentDay = new Date().getDate();
+    const currentMonth = new Date().getMonth();
+    this.maxDate = new Date(currentYear, currentMonth, currentDay);
   }
 
   close(): void {

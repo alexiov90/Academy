@@ -8,6 +8,13 @@
         <mat-label>Messaggio</mat-label>
         <textarea matInput [(ngModel)]="message.message" placeholder="Scrivi qualcosa ..."></textarea>
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Data di creazione</mat-label>
+      <input [max]="maxDate" matInput [matDatepicker]="picker">
+      <mat-hint>E' richiesto l'inserimento della data in modalità MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">

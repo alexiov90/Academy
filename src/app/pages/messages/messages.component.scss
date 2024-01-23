@@ -8,3 +8,7 @@
 mat-nav-list {
   margin: 1em -1.5em;
 }
+
+.active {
+  z-index: 999999999;
+}

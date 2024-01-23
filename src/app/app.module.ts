@@ -14,6 +14,7 @@ import { CreateMessageDialogComponent } from './components/create-message-dialog
 import { LoginComponent } from './pages/login/login.component';
 import { HiddenMessagesComponent } from './pages/hidden-messages/hidden-messages.component';
 import { HttpClientModule } from '@angular/common/http';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideNativeDateAdapter()
   ],
   bootstrap: [AppComponent]
 })
