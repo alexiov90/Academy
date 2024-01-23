@@ -5,6 +5,7 @@ import { MessageDetailComponent } from './pages/message-detail/message-detail.co
 import { MessagesComponent } from './pages/messages/messages.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthenticationGuard } from './services/guards/authentication.guard';
+import { HiddenMessagesComponent } from './pages/hidden-messages/hidden-messages.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,14 @@ const routes: Routes = [
       },
       {
         path:'message/:id',
+        component: MessageDetailComponent
+      },
+      {
+        path: 'hidden-messages',
+        component: HiddenMessagesComponent
+      },
+      {
+        path:'hidden-messages/:id',
         component: MessageDetailComponent
       }
     ]

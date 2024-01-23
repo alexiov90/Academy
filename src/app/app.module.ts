@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CreateMessageDialogComponent } from './components/create-message-dialog/create-message-dialog.component';
 import { LoginComponent } from './pages/login/login.component';
+import { HiddenMessagesComponent } from './pages/hidden-messages/hidden-messages.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { LoginComponent } from './pages/login/login.component';
     MessagesComponent,
     MessageDetailComponent,
     CreateMessageDialogComponent,
-    LoginComponent
+    LoginComponent,
+    HiddenMessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { LoginComponent } from './pages/login/login.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

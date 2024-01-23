@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Message } from '../model/message';
 import { MOCK_MESSAGES } from '../mock/mock-messages';
 import { Observable, of, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 export const DEMO_MESSAGES_STORE = 'demo_messages_store';
 
@@ -10,11 +11,24 @@ export const DEMO_MESSAGES_STORE = 'demo_messages_store';
 })
 export class MessageService {
   messages: Message[] = [];
-  constructor() {
+  private url = 'https://my-json-server.typicode.com/JSGund/XHR-Fetch-Request-JavaScript/posts';
+  private url2 = 'https://reqres.in/';
+  constructor(
+    private http: HttpClient
+  ) {
     const stored: string | null = localStorage.getItem(DEMO_MESSAGES_STORE);
     this.messages = stored ? JSON.parse(stored) : this.save(MOCK_MESSAGES);
 
    }
+
+   getPosts() {
+    return this.http.get(this.url);
+  }
+
+  getUsers(pageNum: number){
+    return this.http.get(this.url2 + 'api/users?page=' + pageNum);
+  }
+
 
    getAll(): Observable<Message[]> {
     return of(this.messages);
@@ -35,7 +49,18 @@ export class MessageService {
    remove(id: number): Observable<void>{
     const messageIndex = this.messages.findIndex(m => m.id === id);
     if(messageIndex !== -1){
-      this.messages.splice(messageIndex, 1);
+      this.messages[messageIndex].attivo = false;
+      this.deleteFromLS();
+      this.save(this.messages);
+      return of(undefined);
+     }
+    return throwError("L'id del messaggio non esiste, cancellazione non avvenuta");
+   }
+
+   enable(id: number): Observable<void>{
+    const messageIndex = this.messages.findIndex(m => m.id === id);
+    if(messageIndex !== -1){
+      this.messages[messageIndex].attivo = true;
       this.deleteFromLS();
       this.save(this.messages);
       return of(undefined);
@@ -50,5 +75,21 @@ export class MessageService {
 
    private deleteFromLS(){
     localStorage.removeItem(DEMO_MESSAGES_STORE);
+   }
+
+   public getNextId(){
+    const messages: string | null = localStorage.getItem(DEMO_MESSAGES_STORE);
+    if(messages){
+      let myMessages: Message[] = JSON.parse(messages);
+      let maxId = 0;
+      for(let i = 0; i < myMessages?.length; i++){
+        if(myMessages[i].id > maxId){
+          maxId = myMessages[i].id;
+        }
+      }
+      maxId += 1;
+      return maxId;
+    }
+    return 0;
    }
 }

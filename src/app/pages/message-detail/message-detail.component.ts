@@ -44,4 +44,12 @@ export class MessageDetailComponent implements OnInit {
     },
     err => console.error(err));
   }
+
+  enable(message:Message):void{
+    this.messageService.enable(message.id).subscribe(()=>{
+      console.log(`${message.title} rimosso!`);
+      this.router.navigate(['/']);
+    },
+    err => console.error(err));
+  }
 }

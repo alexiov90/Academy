@@ -23,7 +23,7 @@ export class AuthenticationService {
 
   login(username: string): Observable<void> {
     const loginDate = new Date();
-    const expirationDate = new Date(loginDate.getTime() + (60 * 500));
+    const expirationDate = new Date(loginDate.getTime() + (60 * 60000));
     this.authentication = {username, loginDate, expirationDate};
     return of(localStorage.setItem(ACCESS_TOKEN, JSON.stringify(this.authentication)));
   }
