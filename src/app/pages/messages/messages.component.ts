@@ -32,16 +32,22 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.title.next('Lista dei messaggi');
-    // this.messageService.getPosts().subscribe(
-    //   (response) => {
-    //     this.posts = response;
-    // },
-    //   (error)=>{
-    //     console.log(error)
-    // });
+    this.messageService.getPosts().subscribe(
+      (response) => {
+        this.posts = response;
+    },
+      (error)=>{
+        console.log(error)
+    });
 
     this.getUsers(1);
     this.getAllMessages();
+  }
+
+  goToBook(book: any){
+    this.messageService.getBook(book.url).subscribe((response: any) =>{
+      console.log(response);
+    })
   }
 
   getUsers(event: any){

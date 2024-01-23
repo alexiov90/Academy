@@ -12,9 +12,9 @@
 
 <table>
   <tr *ngFor="let post of posts">
-    <td>{{post.id}}</td>
-    <td>{{post.title}}</td>
-    <td><a href="{{post.path}}">{{post.path}}</a></td>
+    <td (click)="goToBook(post)">{{post.name}}</td>
+    <td>{{post.publisher}}</td>
+    <td>{{post.released | date:'long'}}</td>
   </tr>
 </table>
 

@@ -11,7 +11,7 @@ export const DEMO_MESSAGES_STORE = 'demo_messages_store';
 })
 export class MessageService {
   messages: Message[] = [];
-  private url = 'https://my-json-server.typicode.com/JSGund/XHR-Fetch-Request-JavaScript/posts';
+  private url = 'https://www.anapioficeandfire.com/api/books';
   private url2 = 'https://reqres.in/';
   constructor(
     private http: HttpClient
@@ -27,6 +27,10 @@ export class MessageService {
 
   getUsers(pageNum: number){
     return this.http.get(this.url2 + 'api/users?page=' + pageNum);
+  }
+
+  getBook(bookUrl: string){
+    return this.http.get(bookUrl);
   }
 
 
