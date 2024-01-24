@@ -11,6 +11,7 @@ import { MessageService } from '../../services/message.service';
 export class CreateMessageDialogComponent implements OnInit{
   message: Message;
   maxDate: Date | undefined;
+  text: string | undefined;
 
   constructor(
     private readonly ref: MatDialogRef<CreateMessageDialogComponent>,
